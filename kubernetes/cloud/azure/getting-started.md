@@ -6,6 +6,9 @@
 # Run Azure CLI
 docker run -it --rm -v ${PWD}:/work -w /work --entrypoint /bin/sh mcr.microsoft.com/azure-cli:2.6.0
 
+# manually retrieve sub ID and then fill in below and paste command 
+az account set --subscription get-content c:\git\sub.txt
+
 cd ./kubernetes/cloud/azure
 
 ```
@@ -16,9 +19,8 @@ cd ./kubernetes/cloud/azure
 #login and follow prompts
 az login 
 
-# view and select your subscription account
 
-az account list -o table
+# az account list -o table
 SUBSCRIPTION=<id>
 az account set --subscription <SubscriptionId-id-here>
 
@@ -28,7 +30,7 @@ az account set --subscription <SubscriptionId-id-here>
 
 ```
 RESOURCEGROUP=aks-getting-started
-az group create -n $RESOURCEGROUP -l australiaeast
+az group create -n $RESOURCEGROUP -l uksouth
 
 ```
 ## Create Service Principal
