@@ -4,25 +4,21 @@
 
 ```
 # Run Azure CLI
-docker run -it --rm -v ${PWD}:/work -w /work --entrypoint /bin/sh mcr.microsoft.com/azure-cli:2.6.0
-
-# manually retrieve sub ID and then fill in below and paste command 
-az account set --subscription get-content c:\git\sub.txt
+docker run -it --rm -v ${PWD}:/work -w /work  -v c:\git:/git --entrypoint /bin/sh mcr.microsoft.com/azure-cli:2.6.0
+# save subscription ID to /git/sub
+SUBSCRIPTION=$(cat /git/sub)
 
 cd ./kubernetes/cloud/azure
 
-```
-
 ## Login to Azure
 
-```
 #login and follow prompts
 az login 
 
 
 # az account list -o table
-SUBSCRIPTION=<id>
-az account set --subscription <SubscriptionId-id-here>
+
+az account set --subscription $SUBSCRIPTION
 
 ```
 
